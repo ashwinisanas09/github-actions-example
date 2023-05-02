@@ -10,7 +10,7 @@ name: project cicd flow
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "test" ]
   pull_request:
     branches: [ "master" ]
 
@@ -30,6 +30,14 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
 
+    - name: Merge to master
+      run: |
+        git config user.name "ashwinisanas09"
+        git config user.email "ashwini.sanas@informa.com"
+        git fetch
+        git checkout master
+        git merge --no-ff --allow-unrelated-histories origin/test -m "Merge test branch to master"
+        git push origin master
 
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v6
