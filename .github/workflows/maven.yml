@@ -32,6 +32,7 @@ jobs:
       run: |
         git config user.name "ashwinisanas09"
         git config user.email "ashwini.sanas@informa.com"
+        git fetch
         git checkout master
         git merge --no-ff origin/test -m "Merge test branch to master"
         git push origin master
